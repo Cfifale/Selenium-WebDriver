@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class LiteCart {
@@ -43,16 +44,9 @@ public class LiteCart {
     @Test
     public void testProductSticker() {
         driver.get("http://localhost/litecart/en/");
-        stickerCheck(By.id("box-most-popular"));
-        stickerCheck(By.id("box-campaigns"));
-        stickerCheck(By.id("box-latest-products"));
-    }
-
-    private void  stickerCheck (By productCategory) {
-        WebElement category = driver.findElement(productCategory);
-        List<WebElement> products = category.findElements(By.cssSelector("li"));
-        for (WebElement element: products) {
-            assertTrue(element.findElements(By.cssSelector("div.image-wrapper > div")).size() == 1);
+        List<WebElement> products = driver.findElements(By.className("product"));
+        for (WebElement product: products) {
+            assertEquals(1, product.findElements(By.className("sticker")).size());
         }
     }
 
