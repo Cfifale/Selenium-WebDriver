@@ -57,7 +57,7 @@ public class AddProduct {
         sendKeys(By.name("quantity"), "30");
         select(By.name("sold_out_status_id"), "Temporary sold out");
         wd.findElement(By.name("new_images[]")).sendKeys(new File("src\\test\\resources\\test-duck.png").getAbsolutePath());
-        if (browser == BrowserType.IE) {
+        if (browser.equals(BrowserType.IE)) {
             sendKeys(By.name("date_valid_from"), Keys.HOME + "2020-01-01");
             sendKeys(By.name("date_valid_to"),Keys.HOME + "2020-12-31");
         } else {
